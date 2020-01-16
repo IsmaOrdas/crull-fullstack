@@ -29,13 +29,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(
-      ['logUser']
-    ),
+    ...mapActions([
+      'logUser'
+    ]),
     async dispatchLogin () {
-      console.log('dispatchLogin', this.form);
       const logged = await this.logUser({...this.form})
-      console.log(logged)
 
       if (logged) {
         localStorage.setItem('_token', logged.data.token)

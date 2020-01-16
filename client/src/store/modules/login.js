@@ -2,12 +2,12 @@ import { login } from '@/api/users.api.js';
 
 const state = {
   user: null,
-  status: {}
+  isLoggedIn: {}
 }
 
 const getters = {
   user: state => state.user,
-  status: state => { console.log(Object.keys(state.status).length); return Object.keys(state.status).length > 0 ? true : false }
+  isLoggedIn: state => { console.log(Object.keys(state.isLoggedIn).length); return Object.keys(state.isLoggedIn).length > 0 ? true : false }
 }
 
 const actions = {
@@ -36,15 +36,15 @@ const actions = {
 const mutations = {
   logout (state) {
     state.user = null;
-    state.status = {};
+    state.isLoggedIn = {};
   },
   loginSuccess (state, user) {
     state.user = user;
-    state.status = { loggedIn: true };
+    state.isLoggedIn = { loggedIn: true };
   },
   loginFailure (state) {
     state.user = null;
-    state.status = {};
+    state.isLoggedIn = {};
   }
 }
 
