@@ -9,7 +9,7 @@ beforeEach(setupDatabase)
 test('Should signup a new user', async () => {
   const response = await request(app).post('/users').send({
     username: 'Nuevo',
-    password: 'probando'
+    password: 'pro'
   }).expect(201)
 
   // Assert the database was changed correctly
@@ -68,6 +68,15 @@ test('Should not delete user account for unauthenticated user', async () => {
   await request(app)
     .delete('/users/me')
     .send()
+    .expect(401)
+})
+
+test('Should not update user if not authenticated', async () => {
+  await request(app)
+    .patch('/users/me')
+    .send({
+      username: 'Miguel'
+    })
     .expect(401)
 })
 
