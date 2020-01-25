@@ -9,7 +9,7 @@ beforeEach(setupDatabase)
 test('Should signup a new user', async () => {
   const response = await request(app).post('/users').send({
     username: 'Nuevo',
-    password: 'pro'
+    password: 'probando'
   }).expect(201)
 
   // Assert the database was changed correctly
@@ -18,6 +18,13 @@ test('Should signup a new user', async () => {
 
   // Assert the password was encrypted
   expect(user.password).not.toBe('probando')
+})
+
+test('Should not signup user with wrong password', async () => {
+  const response = await request(app).post('/users').send({
+    username: 'Nuevo',
+    password: 'pro'
+  }).expect(400)
 })
 
 test('Should login existing user', async () => {

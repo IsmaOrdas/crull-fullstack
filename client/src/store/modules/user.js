@@ -1,4 +1,4 @@
-import { login } from '@/api/users.api.js';
+import { login, register } from '@/api/users.api.js';
 
 const state = {
   user: null,
@@ -11,6 +11,23 @@ const getters = {
 }
 
 const actions = {
+  async registration ({commit}, data) {
+    try {
+      let registerForm = {
+        username: data.username,
+        password: data.password
+      }
+
+      const user = await register(registerForm);
+      // Log user in automatically
+      commit('loginSuccess', user.data)
+      return user;
+
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  },
   async logUser ({commit}, data) {
     try {
       let loginForm = {

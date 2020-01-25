@@ -19,9 +19,7 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'AppHeader',
   data () {
-    return {
-
-    }
+    return {}
   },
   computed: {
     ...mapGetters([
